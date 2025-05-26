@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Integralog</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Ícone: Logistics icons created by Eucalyp - Flaticon -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <nav class="main-nav">
+    <a href="dashboard.html" class="nav-link">Alimentação De Dados</a>
+    <a href="historico_posicoes.html" class="nav-link">Histórico de Posições</a>
+    <a href="products.html" class="nav-link">Produtos em Tempo Real</a>
+    <a href="buscar_posicao.html" class="nav-link">Buscar Posição de Produto</a>
+    <a href="register.html" class="nav-link">Cadastro</a>
+  </nav>
+
+  <header>
+    <h1><i class="fas fa-warehouse"></i> Integralog - Painel de Controle</h1>
+    <div id="user-info">Bem-vindo</div>
+    <button id="logout-btn" class="login-btn"><i class="fas fa-sign-out-alt"></i> Sair</button>
+  </header>
+
+  <div class="container">
+    <div id="message-box" class="message-box"></div>
+
+    <h2><i class="fas fa-box"></i> Adicionar Produto ao Estoque</h2>
+    <form id="add-product-form">
+      <input type="text" id="product-sku" placeholder="SKU" required />
+      <input type="text" id="product-name" placeholder="Nome do Produto" required />
+      <input type="text" id="product-lote" placeholder="Lote" required />
+      <input type="date" id="product-date" placeholder="Data de Validade" required />
+      <input type="number" id="product-quantity" placeholder="Quantidade" required min="1" />
+      <select id="product-position" required title="Selecione a posição do produto">
+        <option value="" disabled selected>Selecione a posição</option>
+      </select>
+      <button type="submit" class="login-btn"><i class="fas fa-plus"></i> Adicionar Produto</button>
+    </form>
+
+    <h2><i class="fas fa-history"></i> Últimas Atividades</h2>
+    <table id="recent-activities-table">
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Nome do Produto</th>
+          <th>Posição</th>
+          <th>Quantidade</th>
+          <th>Tipo de Atividade</th>
+          <th>Realizado Por</th>
+          <th>Data/Hora da Atividade</th>
+        </tr>
+      </thead>
+      <tbody>
+        </tbody>
+    </table>
+  </div>
+
+  <script type="module" src="firebase-init.js"></script>
+  <script type="module" src="main.js"></script>
+
+<script type="module">
+  import { auth, database } from './firebase-init.js';
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { ref, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userRef = ref(database, 'users/' + user.uid);
+      const snapshot = await get(userRef);
+      const userData = snapshot.val();
+      const matricula = userData?.matricula || 'N/A';
+      const userInfo = document.getElementById('user-info');
+      userInfo.textContent = `Bem-vindo - ${user.displayName || user.email} (Matrícula: ${matricula})`;
+    }
+  });
+</script>
+
+</body>
+</html>

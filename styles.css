@@ -1,0 +1,414 @@
+/* ============================= */
+/* Logistics Inventory Management System CSS */
+/* Theme: Warehouse, Boxes, Stock, Logistics */
+/* Palette: Blue, Orange, Gray, Green */
+/* ============================= */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f5f7fa; /* Light gray-blue background */
+  color: #333333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle background pattern simulating boxes (using CSS grid lines) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(to right, #d9e2ec 1px, transparent 1px),
+    linear-gradient(to bottom, #d9e2ec 1px, transparent 1px);
+  background-size: 20px 20px; /* Size of the grid cells */
+  opacity: 0.3; /* Subtler effect */
+  z-index: -1;
+}
+
+/* General Layout */
+.container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; /* Allows container to grow and push footer down */
+}
+
+/* Header Styles */
+header {
+  background-color: #004080; /* Dark blue */
+  color: #ffffff;
+  padding: 15px 30px;
+  text-align: center;
+  border-radius: 8px 8px 0 0; /* Rounded top corners for header */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+header h1 i {
+  margin-right: 10px;
+  color: #ff8c00; /* Orange accent */
+}
+
+#user-info {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #a7d9ff; /* Lighter blue for info */
+}
+
+/* Navigation Bar */
+.main-nav {
+  background-color: #0056b3; /* Slightly lighter blue than header */
+  padding: 10px 0;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allows links to wrap on smaller screens */
+}
+
+.main-nav a.nav-link { /* Específico para links de navegação */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 5px 10px;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 5px;
+}
+
+.main-nav a.nav-link:hover {
+  background-color: #007bff; /* Brighter blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Forms (Login, Register, Add Product) */
+form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e6ed;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form h2 {
+  color: #004080;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="number"],
+form input[type="date"],
+form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus,
+form input[type="number"]:focus,
+form input[type="date"]:focus,
+form select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.login-btn {
+  background-color: #ff8c00; /* Orange */
+  color: #ffffff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex; /* For icon alignment */
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+.login-btn i {
+  font-size: 1.2rem;
+}
+
+.login-btn:hover {
+  background-color: #e67300; /* Darker orange */
+  transform: translateY(-2px);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* Specific Styles for Login/Register Pages */
+.login-container, .register-container {
+  max-width: 400px;
+  margin: 10vh auto; /* Center vertically and horizontally */
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-container h1, .register-container h1 {
+  font-size: 2.2rem;
+  color: #004080;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container h1 i, .register-container h1 i {
+  margin-right: 12px;
+  color: #ff8c00;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"],
+.register-container input[type="text"],
+.register-container input[type="password"] {
+  margin-bottom: 15px;
+}
+
+.register-link, .login-link {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #555555;
+}
+
+.register-link a, .login-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover, .login-link a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures rounded corners apply to content */
+}
+
+table th, table td {
+  padding: 12px 15px;
+  border: 1px solid #e0e6ed;
+  text-align: left;
+}
+
+table thead th {
+  background-color: #004080;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+table tbody tr:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+}
+
+/* Footer (optional, but good practice for full page apps) */
+footer {
+  margin-top: auto; /* Pushes footer to the bottom */
+  background-color: #343a40; /* Dark gray */
+  color: #ffffff;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.85rem;
+  border-top: 1px solid #495057;
+}
+
+/* Buttons within tables (e.g., "Pegar Produto") */
+table button {
+  background-color: #28a745; /* Green */
+  color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease;
+}
+
+table button:hover {
+  background-color: #218838; /* Darker green */
+}
+
+/* Specific styles for products.html to make it look like a "sheet" */
+/* Remove rounded corners and shadows from container and table */
+.container, #removed-items-table {
+  border-radius: 12px !important;
+  box-shadow: 4px 4px 10px rgba(0, 64, 128, 0.15) !important;
+}
+
+/* Enhanced sheet-like style for products.html */
+
+.container {
+  max-width: 100%;
+  margin: 1rem auto;
+  padding: 0;
+  background-color: #ffffff;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+#realtime-products-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  color: #000000;
+  background-color: #ffffff;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+#realtime-products-table th,
+#realtime-products-table td {
+  border: 1px solid #d0d7de;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+#realtime-products-table thead th {
+  background-color: #f3f6f8;
+  color: #333333;
+  font-weight: bold;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    margin: 1rem;
+    padding: 15px;
+  }
+
+  header, .main-nav {
+    padding: 10px 15px;
+    border-radius: 0;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .main-nav a.nav-link {
+    margin: 3px 5px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  .login-container, .register-container {
+    padding: 25px;
+    margin: 5vh auto;
+  }
+
+  .login-container h1, .register-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  table, #realtime-products-table {
+    font-size: 0.8rem;
+  }
+
+  table th, table td,
+  #realtime-products-table th, #realtime-products-table td {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  .main-nav {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main-nav a.nav-link {
+    width: 100%;
+    text-align: center;
+    margin: 2px 0;
+  }
+
+  .login-container, .register-container {
+    padding: 20px;
+    margin: 2vh auto;
+  }
+
+  .login-container h1, .register-container h1 {
+    font-size: 1.5rem;
+  }
+}

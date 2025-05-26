@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - Integralog</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Ícone: Logistics icons created by Eucalyp - Flaticon -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="register-container container">
+    <h1><i class="fas fa-warehouse"></i> Cadastro - Integralog</h1>
+
+    <form id="register-form">
+        <input type="text" id="register-username" placeholder="Email" required />
+        <input type="text" id="register-name" placeholder="Nome Completo" required />
+        <input type="text" id="register-matricula" placeholder="Matrícula" required />
+        <input type="password" id="register-password" placeholder="Senha" required />
+        <input type="password" id="register-confirm-password" placeholder="Confirmar Senha" required />
+        <button type="submit" class="login-btn"><i class="fas fa-box"></i> Registrar</button>
+      </form>
+
+    <div class="login-link">
+      <p>Já tem uma conta? <a href="index.html">Faça login aqui</a></p>
+    </div>
+  </div>
+
+  <script type="module" src="firebase-init.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Histórico de Posições Retiradas</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Ícone: Logistics icons created by Eucalyp - Flaticon -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <nav class="main-nav">
+    <a href="dashboard.html" class="nav-link">Alimentação de Dados</a>
+    <a href="historico_posicoes.html" class="nav-link">Histórico de Posições Retiradas</a>
+    <a href="products.html" class="nav-link">Produtos em Tempo Real</a>
+    <a href="buscar_posicao.html" class="nav-link">Buscar Posição de Produto</a>
+    <a href="register.html" class="nav-link">Cadastro</a>
+  </nav>
+
+  <div class="container">
+      <header>
+        <h1>Histórico de Posições Retiradas</h1>
+        <div id="user-info">Bem-vindo</div>
+        <button id="logout-btn" class="login-btn"><i class="fas fa-sign-out-alt"></i> Sair</button>
+      </header>
+    <main>
+      <table id="removed-items-table">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Nome do Produto</th>
+            <th>Lote</th>
+            <th>Data de Validade.</th>
+            <th>Quantidade</th>
+            <th>Posição</th>
+            <th>Pego Por</th>
+            <th>Data/Hora Remoção</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+    </main>
+  </div>
+  <script type="module" src="firebase-init.js"></script>
+  <script type="module" src="main.js"></script> 
+<script type="module">
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+  const auth = getAuth();
+  const db = getDatabase();
+
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userRef = ref(db, 'users/' + user.uid);
+      const snapshot = await get(userRef);
+      const userData = snapshot.val();
+      const matricula = userData?.matricula || 'N/A';
+      const userInfo = document.getElementById('user-info');
+      userInfo.textContent = `Bem-vindo - ${user.displayName || user.email} (Matrícula: ${matricula})`;
+    }
+  });
+</script>
+
+</body>
+</html>

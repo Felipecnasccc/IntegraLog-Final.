@@ -1,0 +1,25 @@
+{
+  "rules": {
+    "products": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "removedItems": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "users": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "positions": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    
+    "$other": {
+      ".read": "false",
+      ".write": "false"
+    }
+  }
+}
